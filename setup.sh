@@ -256,7 +256,7 @@ link_dotfiles_zsh() {
 setup_ghostty() {
     header "Ghostty"
 
-    if brew list --cask ghostty &>/dev/null 2>&1; then
+    if brew list --cask ghostty &>/dev/null 2>&1 || [[ -d "/Applications/Ghostty.app" ]]; then
         success "Ghostty already installed."
     else
         info "Installing Ghostty..."
