@@ -34,7 +34,11 @@ fi
 # Acquire sudo upfront and refresh it in the background throughout the script
 echo -e "${BOLD}This script may require sudo for some installations.${NC}"
 sudo -v
-( while true; do sudo -n true; sleep 60; kill -0 "$$" 2>/dev/null || exit; done ) &
+(while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" 2>/dev/null || exit
+done) &
 SUDO_KEEPALIVE_PID=$!
 trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null' EXIT
 
@@ -137,7 +141,7 @@ install_fonts() {
     fi
 
     # Sarasa-Mono-SC-Nerd has no releases — download repo zip directly
-    if _font_installed "Sarasa Mono SC Nerd"; then
+    if _font_installed "Sarasa Nerd"; then
         success "Font 'Sarasa-Mono-SC-Nerd' already installed — skipping."
     else
         info "Downloading Sarasa-Mono-SC-Nerd (repo zip)..."
