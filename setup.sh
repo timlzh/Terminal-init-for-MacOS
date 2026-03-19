@@ -22,7 +22,7 @@ error() { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 header() { echo -e "\n${BOLD}${CYAN}══ $* ══${NC}\n"; }
 
 # Script directory (works even when symlinked)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # ── Guard: macOS only ─────────────────────────────────────────────────────────
 if [[ "$(uname)" != "Darwin" ]]; then
@@ -42,7 +42,7 @@ trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null' EXIT
 REPO_URL="https://github.com/timlzh/Terminal-init-for-MacOS.git"
 REPO_DIR="$HOME/terminal_setup"
 
-if [[ "$0" == "bash" || "$0" == "/bin/bash" || "$0" == "sh" ]]; then
+if [[ -z "${BASH_SOURCE[0]:-}" || "$0" == "bash" || "$0" == "/bin/bash" || "$0" == "sh" ]]; then
     info "Detected curl | bash mode — cloning repo to $REPO_DIR ..."
     if [[ -d "$REPO_DIR/.git" ]]; then
         info "Repo already exists, pulling latest..."
