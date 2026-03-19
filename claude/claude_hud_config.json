@@ -1,0 +1,22 @@
+{
+  "display": {
+    "showTools": true,
+    "showAgents": true,
+    "showTodos": true,
+    "showDuration": true,
+    "showConfigCounts": true,
+    "showSessionName": true,
+    "showTokenBreakdown": true,
+    "showSpeed": true,
+    "showUsage": true
+  },
+  "gitStatus": {
+    "enabled": true,
+    "showDirty": true,
+    "showAheadBehind": false,
+    "showFileStats": false
+  },
+  "lineLayout": "expanded",
+  "showSeparators": false,
+  "elementOrder": ["context", "usage", "todos", "project", "environment", "tools", "agents"]
+}
