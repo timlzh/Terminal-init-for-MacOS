@@ -19,6 +19,22 @@ terminal_setup/
     └── claude_hud_config.json
 ```
 
+## Quick Install
+
+One-liner full setup (no git required):
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/timlzh/Terminal-init-for-MacOS/main/setup.sh)"
+```
+
+Or clone and run interactively:
+
+```bash
+git clone git@github.com:timlzh/Terminal-init-for-MacOS.git ~/terminal_setup
+cd ~/terminal_setup
+./setup.sh
+```
+
 ## Usage
 
 ```bash

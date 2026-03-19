@@ -38,6 +38,21 @@ sudo -v
 SUDO_KEEPALIVE_PID=$!
 trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null' EXIT
 
+# ── curl | bash mode: clone the repo first ────────────────────────────────────
+REPO_URL="https://github.com/timlzh/Terminal-init-for-MacOS.git"
+REPO_DIR="$HOME/terminal_setup"
+
+if [[ "$0" == "bash" || "$0" == "/bin/bash" || "$0" == "sh" ]]; then
+    info "Detected curl | bash mode — cloning repo to $REPO_DIR ..."
+    if [[ -d "$REPO_DIR/.git" ]]; then
+        info "Repo already exists, pulling latest..."
+        git -C "$REPO_DIR" pull --ff-only
+    else
+        git clone "$REPO_URL" "$REPO_DIR"
+    fi
+    exec bash "$REPO_DIR/setup.sh" "$@"
+fi
+
 # =============================================================================
 # PREREQUISITE 1 — Homebrew
 # =============================================================================
